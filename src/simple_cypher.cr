@@ -20,4 +20,4 @@ post "/decypher" do |env|
     { "result" => caesar.decypher(env.params.json["phrase"].as(String), env.params.json["password"].as(String)) }.to_json
 end
 
-Kemal.run
+Kemal.run ENV.has_key?("PORT") ? ENV["PORT"].to_i : 3000
