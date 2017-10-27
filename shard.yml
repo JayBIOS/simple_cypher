@@ -1,0 +1,20 @@
+name: simple_cypher
+version: 0.1.0
+
+authors:
+  - Jonathan Batista <jonathan.b.d.o.s@gmail.com>
+
+targets:
+  simple_cypher:
+    main: src/simple_cypher.cr
+
+crystal: 0.23.1
+
+dependencies:
+  spec-kemal:
+    github: kemalcr/spec-kemal
+  kemal:
+    github: kemalcr/kemal
+    branch: master
+
+license: MIT
