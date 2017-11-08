@@ -9,7 +9,7 @@ describe SimpleCypher::Caesar do
 
         it "should return the first char" do
             caesar = SimpleCypher::Caesar.new
-            caesar.cypher("õ", "1").should eq "a"
+            caesar.cypher("'", "1").should eq "a"
         end
     end
 
@@ -21,7 +21,7 @@ describe SimpleCypher::Caesar do
 
         it "should return the last char" do
             caesar = SimpleCypher::Caesar.new
-            caesar.decypher("a", "1").should eq "õ"
+            caesar.decypher("a", "1").should eq "'"
         end
     end
 end

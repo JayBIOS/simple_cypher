@@ -9,11 +9,11 @@ describe SimpleCypher do
     it "cypher a phrase correctly on /cypher" do
         json_body = { "phrase": "JayBIOS", "password": "512 256 128" }
         post "/cypher", headers: HTTP::Headers{ "Content-Type" => "application/json" }, body: json_body.to_json
-        JSON.parse(response.body)["result"].should eq "izãa8or"
+        JSON.parse(response.body)["result"].should eq "íqî8Yiõ"
     end
 
     it "decypher a phrase correctly on /decypher" do
-        json_body = { "phrase": "izãa8or", "password": "512 256 128" }
+        json_body = { "phrase": "íqî8Yiõ", "password": "512 256 128" }
         post "/decypher", headers: HTTP::Headers{ "Content-Type" => "application/json" }, body: json_body.to_json
         JSON.parse(response.body)["result"].should eq "JayBIOS"
     end
