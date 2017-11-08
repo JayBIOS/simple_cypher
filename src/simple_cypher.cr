@@ -4,11 +4,15 @@ require "json"
 
 caesar = SimpleCypher::Caesar.new
 
+static_headers do |response, filepath, filestat|
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers.add("Content-Size", filestat.size.to_s)
+end
+
 before_all do |env|
-  env.response.content_type = "application/json"
-  env.response.headers["Access-Control-Allow-Origin"] = "*"
-  env.response.headers["Access-Control-Allow-Headers"] = "*"
-  env.response.headers["Access-Control-Allow-Methods"] = "*"
+    env.response.content_type = "application/json"
 end
 
 get "/" do |env|
