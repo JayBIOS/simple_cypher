@@ -8,7 +8,7 @@ class CORSHandler < Kemal::Handler
     def call(context)
         context.response.headers["Access-Control-Allow-Origin"] = "*"
         context.response.headers["Access-Control-Allow-Methods"] = "*"
-        context.response.headers["Access-Control-Allow-Headers"] = "*"
+        context.response.headers["Access-Control-Allow-Headers"] = "Content-Type"
         if context.request.method.downcase == "options"
             context.response.status_code = 200
             context.response.content_type = "text/html; charset=utf-8"
