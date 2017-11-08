@@ -1,3 +1,5 @@
+require "big_int"
+
 module SimpleCypher
     class Caesar
 
@@ -14,17 +16,17 @@ module SimpleCypher
         end
 
         def cypher(phrase : String, password : String) : String
-            add = -> (x : Int32, y : Int32) { x + y }
+            add = -> (x : Int32, y : BigInt) { x + y }
             process(phrase, password, add)
         end
 
         def decypher(phrase : String, password : String) : String
-            subtract = -> (x : Int32, y : Int32) { x - y }
+            subtract = -> (x : Int32, y : BigInt) { x - y }
             process(phrase, password, subtract)
         end
 
-        def process(phrase : String, password : String, index_calculation : (Int32, Int32) -> Int32) : String
-            steps = password.split.map { |n| n.to_i }
+        def process(phrase : String, password : String, index_calculation : (Int32, BigInt) -> BigInt) : String
+            steps = password.split.map { |n| n.to_big_i }
             rotation = 0
             result = ""
 
@@ -33,7 +35,7 @@ module SimpleCypher
 
                 next if position.nil?
 
-                index = index_calculation.call(position, steps[rotation]) % (@chars.size)
+                index = index_calculation.call(position, steps[rotation].to_big_i) % (@chars.size)
 
                 encrypted_char = @chars[index]
 
