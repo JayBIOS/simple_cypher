@@ -7,6 +7,8 @@ caesar = SimpleCypher::Caesar.new
 before_all do |env|
   env.response.content_type = "application/json"
   env.response.headers["Access-Control-Allow-Origin"] = "*"
+  env.response.headers["Access-Control-Allow-Headers"] = "*"
+  env.response.headers["Access-Control-Allow-Methods"] = "*"
 end
 
 get "/" do |env|
