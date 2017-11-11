@@ -15,22 +15,26 @@ module SimpleCypher
             @chars = (dictionary.map { |line| line.split("") unless line.starts_with? "#" }).flatten.compact
         end
 
-        def cypher(phrase : String, password : String) : String
+        def cypher(text : String, password : String) : String
             add = -> (x : Int32, y : BigInt) { x + y }
-            process(phrase, password, add)
+            process(text, password, add)
         end
 
-        def decypher(phrase : String, password : String) : String
+        def decypher(text : String, password : String) : String
             subtract = -> (x : Int32, y : BigInt) { x - y }
-            process(phrase, password, subtract)
+            process(text, password, subtract)
         end
 
-        def process(phrase : String, password : String, index_calculation : (Int32, BigInt) -> BigInt) : String
+        def process(text : String, password : String, index_calculation : (Int32, BigInt) -> BigInt) : String
+            return text.split("\n").map { |line| process_line(line, password, index_calculation) }.join("\n")
+        end
+
+        def process_line(line : String, password : String, index_calculation : (Int32, BigInt) -> BigInt) : String
             steps = password.split.map { |n| n.to_big_i }
             rotation = 0
             result = ""
 
-            phrase.split("").each do |char|
+            line.split("").each do |char|
                 position = @chars.index char
 
                 next if position.nil?

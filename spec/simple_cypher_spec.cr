@@ -6,14 +6,14 @@ describe SimpleCypher do
         JSON.parse(response.body)["version"].should eq SimpleCypher::VERSION
     end
 
-    it "cypher a phrase correctly on /cypher" do
-        json_body = { "phrase": "JayBIOS", "password": "512 256 128" }
+    it "cypher a text correctly on /cypher" do
+        json_body = { "text": "JayBIOS", "password": "512 256 128" }
         post "/cypher", headers: HTTP::Headers{ "Content-Type" => "application/json" }, body: json_body.to_json
         JSON.parse(response.body)["result"].should eq "íqî8Yiõ"
     end
 
-    it "decypher a phrase correctly on /decypher" do
-        json_body = { "phrase": "íqî8Yiõ", "password": "512 256 128" }
+    it "decypher a text correctly on /decypher" do
+        json_body = { "text": "íqî8Yiõ", "password": "512 256 128" }
         post "/decypher", headers: HTTP::Headers{ "Content-Type" => "application/json" }, body: json_body.to_json
         JSON.parse(response.body)["result"].should eq "JayBIOS"
     end
