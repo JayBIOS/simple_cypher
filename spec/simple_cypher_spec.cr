@@ -13,7 +13,7 @@ describe SimpleCypher do
     end
 
     it "decypher a text correctly on /decypher" do
-        json_body = { "text": "5jETRU:", "password": "512 256 128" }
+        json_body = { "text": "XhéPPc7", "password": "512 256 128" }
         post "/decypher", headers: HTTP::Headers{ "Content-Type" => "application/json" }, body: json_body.to_json
         JSON.parse(response.body)["result"].should eq "JayBIOS"
     end
